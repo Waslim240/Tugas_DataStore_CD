@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
     private fun getDataUsername(){
         userManager = UserManager(requireContext())
 
-        userManager.name.asLiveData().observe(viewLifecycleOwner){
+        userManager.username.asLiveData().observe(viewLifecycleOwner){
             welcome.text = "Welcome, $it"
         }
     }
