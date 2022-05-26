@@ -25,6 +25,7 @@ import waslim.binar.andlima.classdiscussions.network.ApiClient
 
 class LoginFragment : Fragment() {
     lateinit var userManager: UserManager
+    lateinit var userList: List<GetAllUserResponseItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,9 +101,11 @@ class LoginFragment : Fragment() {
                                             Toast.makeText(requireContext(), "Password Salah", Toast.LENGTH_LONG).show()
                                         }
                                         else -> {
+                                            val data = response.body()!![0]
                                             GlobalScope.launch {
-                                                userManager.saveData(username, password, response.body()!![1].name, response.body()!![1].umur.toString(), response.body()!![1].image, response.body()!![1].address)
+                                                userManager.saveData(username, password, data.name, data.umur.toString(), data.image, data.address)
                                             }
+
                                             Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_homeFragment)
                                         }
                                     }
@@ -122,6 +125,8 @@ class LoginFragment : Fragment() {
 
             })
     }
+
+
 
 
 }

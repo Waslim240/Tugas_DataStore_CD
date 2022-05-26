@@ -31,11 +31,10 @@ class HomeFragment : Fragment() {
         goToProfile()
     }
 
-
     private fun getDataUsername(){
         userManager = UserManager(requireContext())
 
-        userManager.username.asLiveData().observe(viewLifecycleOwner){
+        userManager.name.asLiveData().observe(viewLifecycleOwner){
             welcome.text = "Welcome, $it"
         }
     }

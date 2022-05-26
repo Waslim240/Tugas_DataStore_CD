@@ -2,10 +2,7 @@ package waslim.binar.andlima.classdiscussions.datastore
 
 import android.content.Context
 import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.createDataStore
-import androidx.datastore.preferences.edit
-import androidx.datastore.preferences.preferencesKey
+import androidx.datastore.preferences.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -31,6 +28,13 @@ class UserManager(context: Context) {
             it[IMAGE] = image
             it[ADDRESS] = address
 
+        }
+    }
+
+
+    suspend fun logout(){
+        dataStore.edit {
+            it.clear()
         }
     }
 
